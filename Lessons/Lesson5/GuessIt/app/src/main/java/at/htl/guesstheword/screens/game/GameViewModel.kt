@@ -5,6 +5,7 @@ import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel(){
@@ -24,6 +25,10 @@ class GameViewModel : ViewModel(){
     private val _time = MutableLiveData<Long>()
     val time: LiveData<Long>
         get() = _time
+
+    val timeString = Transformations.map(time, {time ->
+        DateUtils.formatElapsedTime(time)
+    })
 
     // The current word
     private val _word = MutableLiveData<String>()
