@@ -9,7 +9,7 @@
             type="at.htl.trackmysleepquality.database.SleepNight" />
         <variable
             name="clickListener"
-            type="at.htl.trackmysleepquality.sleeptracker.SleepNightAdapter.SleepNightListener"/>
+            type="at.htl.trackmysleepquality.sleeptracker.SleepNightListener"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
