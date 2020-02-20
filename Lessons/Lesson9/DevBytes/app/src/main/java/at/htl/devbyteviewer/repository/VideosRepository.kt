@@ -16,3 +16,18 @@
  */
 
 package at.htl.devbyteviewer.repository
+
+import at.htl.devbyteviewer.database.VideosDatabase
+import at.htl.devbyteviewer.network.Network
+import at.htl.devbyteviewer.network.asDatabaseModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+class VideosRepository(private val database: VideosDatabase) {
+    suspend fun refreshVideos() {
+        withContext(Dispatchers.IO) {
+            val playlist = Network.devbytes.getPlaylist().await()
+            database.videoDao.insertAll(*playlist.asDatabaseModel())
+        }
+    }
+}
